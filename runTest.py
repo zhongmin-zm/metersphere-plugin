@@ -244,11 +244,53 @@ def start(domain: str, access_key: str, secret_key: str):
         time.sleep(3)
 
     res = m.get_test_plan_failure(test_plan_id)
+    report_share_url = f'{domain.rstrip("/")}/track/share-plan-report?shareId={share_url_id}'
     if len(res) > 0:
         # if test plan failed, print test plan report link and errors
-        print(f'check errors {len(res)} -> {domain.rstrip("/")}/track/share-plan-report?shareId={share_url_id}')
+        print(f'check errors {len(res)} -> ${report_share_url}')
         print(json.dumps(res))
+        send_msg("manager 回归测试", "Failed", report_share_url, res)
         exit(1)
+    send_msg("manager 回归测试", "Success", report_share_url, res)
+
+
+def send_msg(job_name, job_status, report_url, failCase):
+    # get send_flag and feishu_webhook url
+    feishu_webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c5f953fc-efb2-41ea-8049-8ed1fc3d7121"
+
+    msg_dict = dict()
+    msg_dict['msg_type'] = 'post'
+    fail_case_list = []
+    if len(failCase) > 0:
+        for failCase in failCase:
+            fail_case_list.append(failCase.get("name"))
+        result = "failed case is: \n" + '\n'.join(fail_case_list)
+    else:
+        result = ""
+    msg_dict['content'] ={
+        "post": {
+            "zh_cn": {
+                "title": job_name,
+                "content": [
+                    [{
+                        "tag": "text",
+                        "text": "result: "
+                    }, {
+                        "tag": "a",
+                        "text": job_status + "\n",
+                        "href": report_url
+                    }, {
+                        "tag": "text",
+                        "text": result
+                    }]
+                ]
+            }
+        }
+    }
+
+    msg_j = json.dumps(msg_dict)
+    res = requests.post(feishu_webhook, data=msg_j, headers={'Content-Type': 'application/json'})
+    print('send message to Feishu , res is :', res.text)
 
 
 # meterspere apikey
