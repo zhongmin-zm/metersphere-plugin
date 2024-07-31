@@ -211,7 +211,7 @@ class MeterSphere:
         res = self._request_file(path, files, headers)
         print(res)
 
-    def update_env_1(self, name: str, project_id: str, env: str, env_id: str, doris_package_name: str, host_1, host_2,
+    def update_env_1(self, project_id: str, env: str, env_id: str, doris_package_name: str, host_1, host_2,
                      manager_download, manager_package, doris_download, upgrade_doris_package_name, upgrade_doris_download,
                      upgrade_manager_download, upgrade_manager_package, priority_network):
         path = "/setting/environment/update"
@@ -262,7 +262,7 @@ def main(domain: str, access_key: str, secret_key: str, project_name: str, test_
     env_id = list(filter(lambda item: item['name'] == env_name, envs))[0]['id']
     print(env_id)
 
-    m.update_env_1(project_name, project_name, env_name, env_id, doris_package_name, host_1, host_2, manager_download, manager_package, doris_download,
+    m.update_env_1(project_id, env_name, env_id, doris_package_name, host_1, host_2, manager_download, manager_package, doris_download,
     upgrade_doris_package_name, upgrade_doris_download, upgrade_manager_download, upgrade_manager_package, priority_network)
 
     print(f'running test plan {project_name} {test_plan_name} {env_name}')
