@@ -211,11 +211,46 @@ class MeterSphere:
         res = self._request_file(path, files, headers)
         print(res)
 
+    def update_env_1(self, name: str, project_id: str, env: str, env_id: str, doris_package_name: str, host_1, host_2,
+                     manager_download, manager_package, doris_download, upgrade_doris_package_name, upgrade_doris_download,
+                     upgrade_manager_download, upgrade_manager_package, priority_network):
+        path = "/setting/environment/update"
+        body = {
+            "id": env_id,
+            "name": env,
+            "projectId": project_id,
+            "protocol": None,
+            "socket": None,
+            "domain": None,
+            "port": None,
+            "createUser": "admin",
+            "createTime": 1721370567113,
+            "updateTime": 1722252326779,
+            "variables": None,
+            "headers": None,
+            "config": "{\"commonConfig\":{\"variables\":[{\"name\":\"DorisPackageName\",\"value\":\"" + doris_package_name + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":1,\"id\":\"2a4c6ba5-d4fd-860a-e120-9481a1c15efe\"},{\"name\":\"deployIP1\",\"value\":\"" + host_1+ "\",\"type\":\"CONSTANT\",\"files\":[],\"enable\":true,\"quotedData\":\"false\",\"delimiter\":\",\",\"scope\":\"api\",\"num\":3,\"id\":\"c46ea313-888e-2388-cd6e-d6ec4c49749b\"},{\"name\":\"env\",\"value\":\"SelectDB\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":4,\"id\":\"cbdec58f-11af-c89a-eb01-65fe1d0df3f2\"},{\"name\":\"agentPort\",\"value\":\"8991\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":5,\"id\":\"618432f7-2812-ca1b-f914-121547b35f8b\"},{\"name\":\"deployUser\",\"value\":\"root\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":6,\"id\":\"ba8ff269-3ee9-7de3-1d55-eb98b2ed66aa\"},{\"name\":\"deployPassword\",\"value\":\"Cfplhys2022@\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":7,\"id\":\"cf5ee92d-e63b-abc1-cceb-4fea60d4adc9\"},{\"name\":\"managerDownload\",\"value\":\"" + manager_download + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":8,\"id\":\"7d6fdd35-32f5-f3ff-56a8-fd9401c50747\"},{\"name\":\"managerPackage\",\"value\":\"" + manager_package + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":9,\"id\":\"efb95afb-8de9-d878-b381-72954d2fa8ef\"},{\"name\":\"managerHost\",\"value\":\"" + host_1 + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":10,\"id\":\"012500ce-3820-e64e-d405-9a8fc039c586\"},{\"name\":\"managerPort\",\"value\":\"8006\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":11,\"id\":\"70d8e8ed-9ebd-4c69-a2dd-3274a8af6621\"},{\"name\":\"deployPath\",\"value\":\"/root/zm/\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":12,\"id\":\"317d5f3e-e9c3-fa6a-c5cd-6f7701d20913\"},{\"name\":\"deployIP2\",\"value\":\"" + host_2 + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":13,\"id\":\"2e2c930a-23fc-bd42-c62b-0eeee707b0f8\"},{\"name\":\"dorisDownload\",\"value\":\"" + doris_download + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":14,\"id\":\"9d06ae77-d0fa-91f6-d382-65eb51035728\"},{\"name\":\"priorityNetworks\",\"value\":\"" + priority_network + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":15,\"id\":\"95eca3cc-d204-4210-7c1a-a1a58f653b94\"},{\"name\":\"upgradeDorisPackageName\",\"value\":\"" + upgrade_doris_package_name + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":16,\"id\":\"675db74b-03e5-9e41-2130-6262765f2a46\"},{\"name\":\"upgradeDorisDownload\",\"value\":\"" + upgrade_doris_download + "\",\"type\":\"CONSTANT\",\"enable\":true,\"scope\":\"api\",\"num\":17,\"id\":\"5dbe7e11-3632-59ee-7242-02a7dfd6cec2\"},{\"name\":\"upgradeManagerDownload\",\"value\":\"" + upgrade_manager_download + "\",\"type\":\"CONSTANT\",\"enable\":true,\"id\":\"0bb38615-9c47-fd71-db7f-121241533fa6\",\"scope\":\"api\",\"num\":18},{\"name\":\"upgradeManagerPackage\",\"value\":\"" + upgrade_manager_package+ "\",\"type\":\"CONSTANT\",\"enable\":true,\"id\":\"98c8afd2-e900-faaf-76d5-eeec8088d9db\",\"scope\":\"api\",\"num\":19},{\"type\":\"CONSTANT\",\"enable\":true,\"id\":\"b28fc4db-87b1-1037-44ef-3c4209aec7d1\",\"scope\":\"api\",\"num\":20}],\"enableHost\":false,\"hosts\":[],\"requestTimeout\":60000,\"responseTimeout\":60000},\"httpConfig\":{\"socket\":\"" + host_1 + ":8006\",\"headers\":[{\"enable\":true}],\"protocol\":\"http\",\"conditions\":[{\"type\":\"NONE\",\"enable\":true,\"id\":\"34aea18d-8b63-4ef1-b191-410b38c161d8\",\"socket\":\"" + host_1 + ":8004\",\"protocol\":\"http\",\"headers\":[{\"enable\":true}],\"domain\":\"" + host_1 + "\",\"time\":1721370581010,\"details\":[{\"name\":\"\",\"value\":\"contains\",\"enable\":true}],\"[object Object]\":1}],\"cookie\":[{\"enable\":false,\"expireTime\":\"1D\"}],\"browser\":\"CHROME\",\"headlessEnabled\":true,\"isMock\":false,\"description\":\"\"},\"databaseConfigs\":[],\"tcpConfig\":{\"classname\":\"TCPClientImpl\",\"reUseConnection\":true,\"nodelay\":false,\"closeConnection\":false},\"sslConfig\":{\"entry\":[],\"files\":[]},\"postStepProcessor\":{\"jsrEnable\":true,\"scriptLanguage\":\"beanshell\"},\"authManager\":{\"hashTree\":[]},\"preProcessor\":{\"jsrEnable\":true,\"scriptLanguage\":\"beanshell\"},\"globalScriptConfig\":{\"filterRequestPreScript\":[],\"connScenarioPostScript\":false,\"connScenarioPreScript\":false,\"filterRequestPostScript\":[],\"isPostScriptExecAfterPrivateScript\":false,\"isPreScriptExecAfterPrivateScript\":false},\"assertions\":{\"duration\":{\"duration\":0},\"jsr223\":[],\"xpathType\":\"xml\",\"regex\":[],\"document\":{\"type\":\"JSON\",\"data\":{\"json\":[],\"xml\":[]},\"enable\":true},\"xpath2\":[],\"jsonPath\":[]},\"postProcessor\":{\"jsrEnable\":true,\"scriptLanguage\":\"beanshell\"},\"preStepProcessor\":{\"jsrEnable\":true,\"scriptLanguage\":\"beanshell\"}}",
+            "hosts": None,
+            "currentProjectId": project_id,
+            "uploadIds": [],
+            "variablesFilesIds": []
+        }
+        data = json.dumps(body)
+        with open('file', 'w') as file:
+            file.write(data)
+        files = MultipartEncoder(
+            fields={'request': ('file', open('file', 'rb'), 'application/json')}
+        )
+        headers = {'Content-Type': files.content_type}
+        print(type(files))
+        res = self._request_file(path, files, headers)
+        print(res)
 
-def main(domain: str, access_key: str, secret_key: str, project_name: str, test_plan_name: str, env_name: str):
+
+def main(domain: str, access_key: str, secret_key: str, project_name: str, test_plan_name: str, env_name: str,
+         doris_package_name: str, host_1, host_2, manager_download, manager_package, doris_download,
+         upgrade_doris_package_name, upgrade_doris_download, upgrade_manager_download, upgrade_manager_package, priority_network):
     m = MeterSphere(domain, access_key, secret_key)
 
-    m.update_env(project_name, project_name)
     projects = m.get_projects()
     project_id = list(filter(lambda item: item['name'] == project_name, projects))[0]['id']
 
@@ -226,6 +261,9 @@ def main(domain: str, access_key: str, secret_key: str, project_name: str, test_
     envs = m.get_envs_by_project_id(project_id)
     env_id = list(filter(lambda item: item['name'] == env_name, envs))[0]['id']
     print(env_id)
+
+    m.update_env_1(project_name, project_name, env_name, env_id, doris_package_name, host_1, host_2, manager_download, manager_package, doris_download,
+    upgrade_doris_package_name, upgrade_doris_download, upgrade_manager_download, upgrade_manager_package, priority_network)
 
     print(f'running test plan {project_name} {test_plan_name} {env_name}')
     test_id = m.run_test_plan(project_id, test_plan_id, env_id).get('data')
@@ -306,5 +344,19 @@ if __name__ == '__main__':
     project_name = sys.argv[4]
     test_plan_name = sys.argv[5]
     env_name = sys.argv[6]
-    main(endpoint, api_key, api_secret, project_name, test_plan_name, env_name)
+    doris_package_name = sys.argv[7]
+    doris_download = sys.argv[8]
+    upgrade_doris_package_name = sys.argv[9]
+    upgrade_doris_download = sys.argv[10]
+    manager_package = sys.argv[11]
+    manager_download = sys.argv[12]
+    upgrade_manager_package = sys.argv[13]
+    upgrade_manager_download = sys.argv[14]
+    host_1 = sys.argv[15]
+    host_2 = sys.argv[16]
+    priority_network = sys.argv[17]
+
+    main(endpoint, api_key, api_secret, project_name, test_plan_name, env_name, doris_package_name, doris_download,
+         upgrade_doris_package_name, upgrade_doris_download, manager_package, manager_download, upgrade_manager_package,
+         upgrade_manager_download, host_1, host_2, priority_network)
 
