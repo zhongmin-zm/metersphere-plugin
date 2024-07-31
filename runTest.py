@@ -1,6 +1,7 @@
 """
 pip install pycryptodome requests
 """
+import sys
 import time
 import base64
 from typing import List, Union
@@ -211,12 +212,8 @@ class MeterSphere:
         print(res)
 
 
-def start(domain: str, access_key: str, secret_key: str):
-    import json
+def main(domain: str, access_key: str, secret_key: str, project_name: str, test_plan_name: str, env_name: str):
     m = MeterSphere(domain, access_key, secret_key)
-    project_name = 'manager'
-    test_plan_name = 'test'
-    env_name = 'x64+24.x'
 
     m.update_env(project_name, project_name)
     projects = m.get_projects()
@@ -293,19 +290,24 @@ def send_msg(job_name, job_status, report_url, failCase):
     print('send message to Feishu , res is :', res.text)
 
 
-# meterspere apikey
-api_key = 'pemqOEaJmIcCm3PG'
-# meterspere api-secret
-api_secret = 'b4tDSLY7qlpylEu8'
-# metersphere endpoint
-endpoint = 'http://172.20.48.145:8081/'
-
 if __name__ == '__main__':
     """
     触发 meterSphere 的测试计划，并返回测试计划执行结果
     """
+    # meterspere apikey
+    #api_key = 'pemqOEaJmIcCm3PG'
+    api_key = sys.argv[1]
+    # meterspere api-secret
+    #api_secret = 'b4tDSLY7qlpylEu8'
+    api_secret = sys.argv[2]
+    # metersphere endpoint
+    #endpoint = 'http://172.20.48.145:8081/'
+    endpoint = sys.argv[3]
+    project_name = sys.argv[4]
+    test_plan_name = sys.argv[5]
+    env_name = sys.argv[6]
     api_key = os.getenv('API_KEY', api_key)
     api_secret = os.getenv('API_SECRET', api_secret)
     endpoint = os.getenv('ENDPOINT', endpoint)
-    start(endpoint, api_key, api_secret)
+    main(endpoint, api_key, api_secret, project_name, test_plan_name, env_name)
 
