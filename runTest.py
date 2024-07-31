@@ -247,8 +247,8 @@ class MeterSphere:
 
 
 def main(domain: str, access_key: str, secret_key: str, project_name: str, test_plan_name: str, env_name: str,
-         doris_package_name: str, host_1, host_2, manager_download, manager_package, doris_download,
-         upgrade_doris_package_name, upgrade_doris_download, upgrade_manager_download, upgrade_manager_package, priority_network):
+         doris_package_name: str, doris_download, upgrade_doris_package_name, upgrade_doris_download, manager_package,
+         manager_download, upgrade_manager_package, upgrade_manager_download, host_1, host_2, priority_network):
     m = MeterSphere(domain, access_key, secret_key)
 
     projects = m.get_projects()
@@ -359,4 +359,6 @@ if __name__ == '__main__':
     main(endpoint, api_key, api_secret, project_name, test_plan_name, env_name, doris_package_name, doris_download,
          upgrade_doris_package_name, upgrade_doris_download, manager_package, manager_download, upgrade_manager_package,
          upgrade_manager_download, host_1, host_2, priority_network)
+
+
 
