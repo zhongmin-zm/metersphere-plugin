@@ -306,8 +306,5 @@ if __name__ == '__main__':
     project_name = sys.argv[4]
     test_plan_name = sys.argv[5]
     env_name = sys.argv[6]
-    api_key = os.getenv('API_KEY', api_key)
-    api_secret = os.getenv('API_SECRET', api_secret)
-    endpoint = os.getenv('ENDPOINT', endpoint)
     main(endpoint, api_key, api_secret, project_name, test_plan_name, env_name)
 
