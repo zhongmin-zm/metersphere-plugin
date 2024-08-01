@@ -215,7 +215,7 @@ class MeterSphere:
                      manager_download, manager_package, doris_download, upgrade_doris_package_name, upgrade_doris_download,
                      upgrade_manager_download, upgrade_manager_package, priority_network):
         path = "/setting/environment/update"
-        if project_name == "manager":
+        if "manager" in project_name:
             body = {
                 "id": env_id,
                 "name": env,
