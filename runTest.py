@@ -357,7 +357,8 @@ if __name__ == '__main__':
     upgrade_manager_download = sys.argv[14]
     host_1 = sys.argv[15]
     host_2 = sys.argv[16]
-    priority_network = sys.argv[17]
+    host_3 = sys.argv[17]
+    priority_network = sys.argv[18]
 
     main(endpoint, api_key, api_secret, project_name, test_plan_name, env_name, doris_package_name, doris_download,
          upgrade_doris_package_name, upgrade_doris_download, manager_package, manager_download, upgrade_manager_package,
